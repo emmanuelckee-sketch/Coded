@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love God?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #clickButton {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #clickButton:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        #clickButton:active {
+            transform: translateY(-2px);
+        }
+
+        .content {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #godImage {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .answer-btn {
+            padding: 15px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(17, 153, 142, 0.4);
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(17, 153, 142, 0.6);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(235, 51, 73, 0.4);
+        }
+
+        .no-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(235, 51, 73, 0.6);
+        }
+
+        .answer-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .response {
+            font-size: 20px;
+            color: #667eea;
+            margin-top: 30px;
+            font-weight: bold;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reset-btn {
+            background: #999;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .reset-btn:hover {
+            background: #666;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="clickButton">✨ Click to Begin ✨</button>
+
+        <div id="content" class="content hidden">
+            <img id="godImage" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop" alt="Heaven and Light">
+            
+            <div class="question">Do you love God?</div>
+            
+            <div class="button-group">
+                <button class="answer-btn yes-btn" onclick="answerYes()">YES ✓</button>
+                <button class="answer-btn no-btn" onclick="answerNo()">NO ✗</button>
+            </div>
+
+            <div id="response" class="response hidden"></div>
+            
+            <button class="reset-btn hidden" id="resetBtn" onclick="reset()">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        const clickButton = document.getElementById('clickButton');
+        const content = document.getElementById('content');
+        const responseDiv = document.getElementById('response');
+        const resetBtn = document.getElementById('resetBtn');
+
+        clickButton.addEventListener('click', function() {
+            clickButton.classList.add('hidden');
+            content.classList.remove('hidden');
+        });
+
+        function answerYes() {
+            showResponse('🙏 That\'s wonderful! May God bless your journey and fill your heart with love and light. 💛');
+        }
+
+        function answerNo() {
+            showResponse('🤔 It\'s okay to question and explore your faith. God loves you unconditionally, and He\'s always there whenever you\'re ready. 💙');
+        }
+
+        function showResponse(message) {
+            responseDiv.textContent = message;
+            responseDiv.classList.remove('hidden');
+            resetBtn.classList.remove('hidden');
+        }
+
+        function reset() {
+            clickButton.classList.remove('hidden');
+            content.classList.add('hidden');
+            responseDiv.classList.add('hidden');
+            resetBtn.classList.add('hidden');
+            responseDiv.textContent = '';
+        }
+    </script>
+</body>
+</html>
